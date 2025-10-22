@@ -1,12 +1,12 @@
 import React from 'react';
-import { useAuth } from '../features/auth/context/AuthContext';
+import { useAuth } from '../../auth/context/AuthContext';
 import { useNavigate } from 'react-router-dom'; 
 
 const Home = () => {
   const { user, isAuthenticated, loading, logout } = useAuth();
   const navigate = useNavigate();
 
-  // 🔑 COPIA DE LAS RUTAS Y ESTILOS DE FONDO DE LOGIN 🔑
+
   const logoUrl = './src/img/logo.png'; 
   const backgroundImageURL = './src/img/imagebg.png'; 
 
@@ -28,7 +28,7 @@ const Home = () => {
     return null; 
   }
 
-  // 🔑 MAPEO DE DATOS 🔑
+
   const nombreUsuario = user.name || 'N/A';
   const nombreUser = user.user_name || 'N/A';
   const telefonoUsuario = user.phone || 'N/A';
@@ -37,7 +37,7 @@ const Home = () => {
   const idUsuario = user.id || 'N/A';
 
 
-  // 🔑 CONTENIDO DEL PERFIL 🔑
+
   return (
     // Outer Container: Fondo con imagen y animación
     <div 

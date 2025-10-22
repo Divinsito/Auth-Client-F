@@ -7,8 +7,8 @@ const Register = () => {
   const navigate = useNavigate();
 
   // Rutas locales de las imágenes (tomadas del componente Login)
-  const logoUrl = './src/img/logo.png';
-  const backgroundImageURL = './src/img/imagebg.png'; 
+  const logoUrl = '/img/logo.png';
+  const backgroundImageURL = '/img/imagebg.png';
 
   // Estado inicial con todos los campos requeridos por el backend
   const [formData, setFormData] = useState({

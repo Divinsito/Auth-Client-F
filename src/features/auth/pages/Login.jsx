@@ -35,10 +35,8 @@ const Login = () => {
   };
 
   // Ruta local de la imagen de logo proporcionada por el usuario
-  const logoUrl = './src/img/logo.png';
-
-  // Ruta local de la imagen de fondo proporcionada por el usuario
-  const backgroundImageURL = './src/img/imagebg.png'; 
+  const logoUrl = '/img/logo.png';
+  const backgroundImageURL = '/img/imagebg.png';
 
 
   return (

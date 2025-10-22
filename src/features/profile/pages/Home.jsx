@@ -7,8 +7,8 @@ const Home = () => {
   const navigate = useNavigate();
 
 
-  const logoUrl = './src/img/logo.png'; 
-  const backgroundImageURL = './src/img/imagebg.png'; 
+  const logoUrl = '/img/logo.png';
+  const backgroundImageURL = '/img/imagebg.png'; 
 
   const handleLogout = () => {
     logout();

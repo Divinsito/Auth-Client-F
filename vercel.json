@@ -1,8 +1,9 @@
+
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/api/:path*", 
+      "destination": "https://reflexoperu-v3.marketingmedico.vip/backend/public/api/:path*"
     }
   ]
 }

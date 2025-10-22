@@ -2,20 +2,15 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-// 🔑 CLAVE: Define la URL Base condicionalmente
-// Si es desarrollo, usa /api (proxy de Vite).
-// Si es producción, usa la variable de entorno completa de Vercel.
-const API_BASE_URL = import.meta.env.DEV 
-    ? '/api' 
-    : import.meta.env.VITE_API_URL; 
-
-if (!API_BASE_URL) {
-    console.error("VITE_API_URL no está definido. Revisa tus variables de entorno en Vercel.");
-}
+// 🔑 CLAVE: Forzamos la URL base a '/api'.
+// Esto hace que el navegador apunte al mismo origen, y el archivo vercel.json 
+// actúa como un proxy inverso para redirigir al backend real.
+const API_BASE_URL = '/api'; 
 
 const AUTH_COOKIE_NAME = 'auth_token';
 
-// Crea la instancia de Axios con la URL base condicional
+// Crea la instancia de Axios.
+// Mantener withCredentials: true es CRÍTICO para las cookies.
 const api = axios.create({
   baseURL: API_BASE_URL, 
   withCredentials: true,
@@ -33,6 +28,7 @@ export const registerUser = async (userData) => {
     const response = await api.post('/register', userData);
     return response.data;
   } catch (error) {
+    // Asegurarse de manejar errores correctamente
     throw error.response ? error.response.data : error;
   }
 };
@@ -44,12 +40,15 @@ export const loginUser = async (credentials) => {
     const data = response.data;
 
     if (data.token) {
-      // Asegúrate de establecer 'secure: true' y 'sameSite' si estás en un dominio HTTPS (Vercel)
+      // ✅ MEJORA DE SEGURIDAD: 
+      // secure: true (solo se envía en HTTPS, Vercel es HTTPS).
+      // sameSite: 'Lax' (recomendado para JWT en cookies).
       Cookies.set(AUTH_COOKIE_NAME, data.token, { expires: 7, secure: true, sameSite: 'Lax' });
     }
 
     return data;
   } catch (error) {
+    // Asegurarse de que el error.response sea lo que se lanza para el componente Login
     throw error.response ? error.response.data : error;
   }
 };
@@ -57,6 +56,8 @@ export const loginUser = async (credentials) => {
 /** 🔹 Cerrar Sesión */
 export const logoutUser = async () => {
   try {
+    // La API de logout puede requerir o no el token en el header, pero el proxy ya permite 
+    // que las cookies se envíen automáticamente con withCredentials: true.
     const token = Cookies.get(AUTH_COOKIE_NAME);
     await api.delete('/logout', {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -73,6 +74,8 @@ export const fetchUserProfile = async (token) => {
     }
     
     try {
+        // Aunque withCredentials: true envía las cookies, el header de Autorización 
+        // es el método más estándar para enviar JWT.
         const response = await api.get('/profile', {
             headers: {
                 Authorization: `Bearer ${token}`, 

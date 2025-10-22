@@ -1,9 +1,16 @@
-
 {
   "rewrites": [
+
     {
       "source": "/api/:path*", 
       "destination": "https://reflexoperu-v3.marketingmedico.vip/backend/public/api/:path*"
+    },
+
+    {
+
+      "source": "/:path((?!api/).*)", 
+
+      "destination": "/index.html"
     }
   ]
 }

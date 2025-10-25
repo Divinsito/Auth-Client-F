@@ -1,13 +1,14 @@
+// src/features/profile/pages/Home.jsx
 import React from 'react';
 import { useAuth } from '../../auth/context/AuthContext';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate, Link } from 'react-router-dom'; 
 
 const Home = () => {
   const { user, isAuthenticated, loading, logout } = useAuth();
   const navigate = useNavigate();
 
 
-  const logoUrl = '/img/logo.png';
+  const logoUrl = '/img/logo.png'; 
   const backgroundImageURL = '/img/imagebg.png'; 
 
   const handleLogout = () => {
@@ -62,7 +63,7 @@ const Home = () => {
         <div className="absolute w-52 h-52 bg-pink-500/10 rounded-full blur-2xl animate-float-fast-delay opacity-40" style={{ bottom: '10%', left: '25%' }}></div>
       </div>
 
-      {/* Contenido Principal: Tarjeta de Perfil de Usuario (Estilo Discord) */}
+      {/* Contenido Principal: Tarjeta de Perfil de Usuario */}
       <div className="relative z-10 bg-gray-800 shadow-2xl rounded-lg overflow-hidden w-full max-w-4xl border border-gray-700/50 flex flex-col md:flex-row">
         
         {/* Columna Izquierda (Header/Logo) - Fondo más oscuro */}
@@ -84,10 +85,20 @@ const Home = () => {
             </span>
           </p>
 
+          {/* NUEVO: Enlace al Blog Simulado */}
+          <Link
+            to="/blog"
+            className="mt-8 w-full py-2 px-4 rounded-md text-sm font-medium text-white 
+                       bg-indigo-600 hover:bg-indigo-500 transition-colors duration-200 shadow-md text-center"
+          >
+            📰 Ver Blog Simulado
+          </Link>
+
+
           {/* Botón de Cerrar Sesión */}
           <button
             onClick={handleLogout}
-            className="mt-8 w-full py-2 px-4 rounded-md text-sm font-medium text-white 
+            className="mt-4 w-full py-2 px-4 rounded-md text-sm font-medium text-white 
                        bg-red-600 hover:bg-red-500 transition-colors duration-200 shadow-md"
           >
             Cerrar Sesión

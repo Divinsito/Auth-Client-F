@@ -1,17 +1,30 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 # Auth-Client-F
+
+Proyecto cliente ligero usando React + Vite: interfaz con autenticación (context + hook), página de perfil y un blog simulado (API mock). Este README recoge lo esencial: qué trae el proyecto y cómo arrancarlo rápido.
+
+## Qué trae el proyecto
+- Stack: React + Vite, Tailwind (estilos), router (react-router).
+- Autenticación con contexto y hook:
+  - Contexto: [`AuthContext`](src/features/auth/context/AuthContext.jsx)
+  - Hook: [`useAuth`](src/features/auth/hooks/useAuth.js)
+  - Ruta protegida: [`ProtectedRoute`](src/features/auth/ProtectedRoute.jsx)
+- Página principal de perfil: [`Home`](src/features/profile/pages/Home.jsx)
+- Blog simulado y UI:
+  - API mock: [`mockBlogApi`](src/assets/blog/api/mockBlogApi.js)
+  - Páginas: [`Posts`](src/assets/pages/Posts.jsx), [`PostDetail`](src/assets/pages/PostDetail.jsx)
+  - Componentes: [`PostCard`](src/assets/components/PostCard.jsx), [`Loader`](src/assets/components/Loader.jsx), [`ErrorMsg`](src/assets/components/ErrorMsg.jsx)
+- Componentes globales: [`Navbar`](src/components/Navbar.jsx)
+- Entrada y router: [src/main.jsx](src/main.jsx), [src/router.jsx](src/router.jsx)
+- Archivos de configuración y despliegue: [package.json](package.json), [vite.config.js](vite.config.js), [vercel.json](vercel.json)
+- Recursos públicos: carpeta [public/img](public/img)
+
+## Requisitos
+- Node.js >= 16
+- npm o yarn
+
+## Inicio rápido
+Instala dependencias y levanta en modo desarrollo:
+```sh
+npm install
+npm run dev
+```

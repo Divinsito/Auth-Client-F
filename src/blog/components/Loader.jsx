@@ -1,6 +1,4 @@
-// src/blog/components/Loader.jsx
 
-// 🔑 RUTA CORREGIDA: Sale de /components, sale de /blog, y entra a /img
 import imageBg from '/img/imagebg.png'; 
 
 export default function Loader() {
@@ -40,7 +38,7 @@ export default function Loader() {
         </svg>
 
         {/* Mensaje de Carga */}
-        <p className="text-white text-lg font-semibold">Cargando contenido del Blog...</p>
+        <p className="text-white text-lg font-semibold">Cargando contenido...</p>
         <p className="text-gray-400 text-sm mt-1">RP SOFT</p> 
       </div>
     </div>

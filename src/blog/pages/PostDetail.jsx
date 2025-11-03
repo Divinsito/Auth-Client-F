@@ -5,7 +5,6 @@ import { getPostById } from "../api/mockBlogApi.js";
 import Loader from "../components/Loader.jsx";     
 import ErrorMsg from "../components/ErrorMsg.jsx";   
 
-// 🔑 CORRECCIÓN CLAVE: Importar la imagen directamente como módulo
 import imageBg from '/img/imagebg.png'; 
 
 export default function PostDetail() {

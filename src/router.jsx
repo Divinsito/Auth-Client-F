@@ -8,8 +8,13 @@ import HomePage from '@/features/profile/pages/Home';
 import ProtectedRoute from '@/features/auth/ProtectedRoute';
 import { useAuth } from '@/features/auth/context/AuthContext';
 
-import Posts from "@/blog/pages/Posts.jsx";          
-import PostDetail from "@/blog/pages/PostDetail.jsx";// ¡Importación estática!sx"));
+import Posts from "@/blog/pages/Posts.jsx";          
+import PostDetail from "@/blog/pages/PostDetail.jsx";
+
+// 🆕 Importar el nuevo módulo de Contacto
+import Contact from './blog/pages/Contact'; 
+
+
 export default function AppRouter() {
     const { isAuthenticated, loading } = useAuth();
     
@@ -26,6 +31,9 @@ export default function AppRouter() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+            
+          {/* 🆕 RUTA PÚBLICA DE CONTACTO (Módulo del Día 4) */}
+          <Route path="/contact" element={<Contact />} />
 
           {/* Rutas Protegidas */}
           <Route 
@@ -36,7 +44,7 @@ export default function AppRouter() {
               </ProtectedRoute>
             } 
           />
-          
+          
           {/* RUTAS DEL BLOG SIMULADO (Protegidas) */}
           <Route 
             path="/blog" 
